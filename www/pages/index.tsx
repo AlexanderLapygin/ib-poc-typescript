@@ -1,9 +1,9 @@
 import React from "react";
 import Layout from "../components/layout";
 
-const Home = props => (
+const Home = (props: any) => (
   <Layout>
-    <h1>ИНФО-БАНК</h1>
+    <h1>ИНФО-БАНК in TypeScript!!!</h1>
     <ul>
       <li>
         «ИНФО-Банк» - это сервис, разработанный специально для клиентов
