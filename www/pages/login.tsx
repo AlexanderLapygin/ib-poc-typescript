@@ -1,18 +1,30 @@
-import { Component } from "react";
+import React from "react";
 import Layout from "../components/layout";
-import service from "../utils/service"
-class Login extends Component {
-  static getInitialProps({ req }) {
-    const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
+import service from "../utils/service";
 
-    const apiUrl = process.browser
-      ? `${protocol}://${window.location.host}/api/login`
-      : `${protocol}://${req.headers.host}/api/login`;
+interface IState {
+  username?: string;
+  password?: string;
+  error?: string;
+}
+
+interface IProps {
+  apiUrl?: string
+}
+
+class Login extends React.Component<IProps, IState> {
+  static getInitialProps({ req }: any) {
+    const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
+    const isBrowser = typeof window !== 'undefined';
+
+    const apiUrl = isBrowser
+    ? `${protocol}://${window.location.host}/api/login`
+    : `${protocol}://${req.headers.host}/api/login`;
 
     return { apiUrl };
   }
 
-  constructor(props) {
+  constructor(props: any) {
     super(props);
 
     this.state = {
@@ -25,15 +37,15 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleUsernameChange(event) {
+  handleUsernameChange(event: any) {
     this.setState({ username: event.target.value });
   }
 
-  handlePasswordChange(event) {
+  handlePasswordChange(event: any) {
     this.setState({ password: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSubmit(event: any) {
     event.preventDefault();
 
     const username = this.state.username;
