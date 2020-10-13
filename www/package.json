@@ -18,6 +18,6 @@
     "@types/react": "^16.4.16",
     "@types/react-dom": "16.0.11",
     "typescript": "3.2.4",
-    "http-proxy": "^1.17.0"
+    "http-proxy": "^1.18.1"
   }
 }
